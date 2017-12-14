@@ -28,7 +28,14 @@
               4.0 stars
             </div>
             
-            <a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">add_shopping_cart</i> Add to Cart</a>
+            <c:choose>
+            	<c:when test="${product.quantity <1 }">
+            		<a href="javascript:void(0)" class="btn btn-primary disabled">Out of Stock</a>
+            	</c:when>
+            	<c:otherwise>
+            		<a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">add_shopping_cart</i> Add to Cart</a>
+            	</c:otherwise>
+            </c:choose>
           </div>
           <!-- /.card -->
 

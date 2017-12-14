@@ -1,11 +1,14 @@
 package net.ezer.onlineshopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.ezer.onlineshopping.exception.ProductNotFoundException;
 import net.ezer.shoppingbackend.dao.CategoryDAO;
 import net.ezer.shoppingbackend.dao.ProductDAO;
 import net.ezer.shoppingbackend.dto.Category;
@@ -13,6 +16,8 @@ import net.ezer.shoppingbackend.dto.Product;
 
 @Controller
 public class PageController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -28,6 +33,9 @@ public class PageController {
 		
 		mv.addObject("categories",categoryDAO.list());
 		mv.addObject("products",productDAO.listActiveProducts());
+		
+		logger.info("Inside PageController index method - INFO");
+		logger.debug("Inside PageController index method - DEBUG");
 		
 		return mv;
 	}
@@ -71,11 +79,13 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = {"/show/product/{productId}"})
-	public ModelAndView showSingleProduct(@PathVariable("productId") int productId) {
+	public ModelAndView showSingleProduct(@PathVariable("productId") int productId) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
 			
 		Product product  = null;
 		product = productDAO.get(productId);
+		
+		if(product == null) throw new ProductNotFoundException();
 		
 		Category category = null;
 		category = categoryDAO.get(product.getCategoryId());
