@@ -11,10 +11,11 @@
 		
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li id="navEmpty" class="nav-item"></li>
-				<li id="navHome" class="nav-item"><a class="nav-link" href="${contextRoot}/home">Store</a></li>
-				<li id="navAbout" class="nav-item"><a class="nav-link" href="${contextRoot}/about">About</a></li>
+				<li id="navEmpty"    class="nav-item"></li>
+				<li id="navHome"     class="nav-item"><a class="nav-link" href="${contextRoot}/home">    Store   </a></li>
+				<li id="navAbout"    class="nav-item"><a class="nav-link" href="${contextRoot}/about">   About   </a></li>
 				<li id="navContacts" class="nav-item"><a class="nav-link" href="${contextRoot}/contacts">Contacts</a></li>
+				<li id="navCart"     class="nav-item"><a class="nav-link" href="${contextRoot}/cart">    Cart    </a></li>
 			</ul>
 		</div>
 	</div>

@@ -5,6 +5,9 @@
 	<c:when test="${userClickCategoryProducts == true}">
 		<h4 class="my-4"> ${category.name} </h4>
 	</c:when>
+	<c:when test="${userClickedCart == true}">
+		<h4 class="my-4"> Cart </h4>
+	</c:when>
 	<c:otherwise>
 		<h4 class="my-4"> Featured </h4>
 	</c:otherwise>

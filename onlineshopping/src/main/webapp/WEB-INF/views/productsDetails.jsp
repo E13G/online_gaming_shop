@@ -12,21 +12,23 @@
         
 	      <div>
 	        	<ol class="breadcrumb">
-	           	  <li><a href="${contextRoot}/show/all/products"> All Games</a>  > </li>
-	           	  <li><a href="${contextRoot}/show/category/2/products"> Adventure Games</a> > </li>
-	        	  <li><a href="#"> The Wild Eight </a></li>
+	           	  <li><a href="${contextRoot}/home"> All Games</a>  > </li>
+	           	  <li><a href="${contextRoot}/show/category/${category.id}/products"> ${category.name}</a> > </li>
+	        	  <li><a href="#"> ${product.name} </a></li>
 	        	</ol>
 	      </div>
 
           <div class="card mt-4">
-            <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+            <img class="card-img-top img-fluid" src="${contextRoot}/resources//images/${product.code}.jpg" alt="">
             <div class="card-body">
-              <h3 class="card-title">Product Name</h3>
-              <h4>$24.99</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+              <h3 class="card-title">${product.name}</h3>
+              <h4>${product.price } &#8364;</h4>
+              <p class="card-text">${product.description}</p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
             </div>
+            
+            <a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">add_shopping_cart</i> Add to Cart</a>
           </div>
           <!-- /.card -->
 

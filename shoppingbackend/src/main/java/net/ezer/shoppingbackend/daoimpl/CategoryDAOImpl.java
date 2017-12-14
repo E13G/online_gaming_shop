@@ -77,6 +77,4 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 	}
 
-	private static List<Category> categories = new ArrayList<>();
-
 }
