@@ -10,6 +10,8 @@
 
         <div class="col-lg-8">
         
+          <br/>
+          <br/>
 	      <div>
 	        	<ol class="breadcrumb">
 	           	  <li><a href="${contextRoot}/home"> All Games</a>  > </li>
@@ -33,7 +35,7 @@
             		<a href="javascript:void(0)" class="btn btn-primary disabled">Out of Stock</a>
             	</c:when>
             	<c:otherwise>
-            		<a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">add_shopping_cart</i> Add to Cart</a>
+            		<a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">shopping_cart</i> Add to Cart</a>
             	</c:otherwise>
             </c:choose>
           </div>

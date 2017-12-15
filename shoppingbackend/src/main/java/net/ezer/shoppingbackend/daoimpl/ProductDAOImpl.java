@@ -30,15 +30,6 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> list() {
-		return sessionFactory
-				.getCurrentSession()
-				.createQuery("FROM product", Product.class)
-				.getResultList();
-		
-	}
-
-	@Override
 	public boolean add(Product product) {
 		try {
 			sessionFactory
@@ -78,6 +69,15 @@ public class ProductDAOImpl implements ProductDAO {
 			ex.printStackTrace();
 		}
 		return false;
+	}
+	
+	@Override
+	public List<Product> list() {
+		return sessionFactory
+				.getCurrentSession()
+				.createQuery("FROM Product", Product.class)
+				.getResultList();
+		
 	}
 
 	@Override

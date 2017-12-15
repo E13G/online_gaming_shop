@@ -7,6 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,19 +26,24 @@ public class Product {
 	
 	private String code;
 	
+	@NotBlank(message="Please Enter Product Name!")
 	private String name;
 	
+	@NotBlank(message="Please Enter Company Name!")
 	private String brand;
 	
 	@JsonIgnore
+	@NotBlank(message="Please Enter Product's Description!")
 	private String description;
 	
 	@Column(name = "unit_price")
+	@Digits(integer=3,fraction=2)
+	@DecimalMin(value="0.99" , message="The price cannot be less than 0.99€ !")
 	private double price;
 	
+	@Min(value=(long) 0, message="The quantity cannot be negative !")
 	private int quantity;
 	
-	@JsonIgnore
 	@Column(name = "is_active")
 	private boolean active;
 	
@@ -47,6 +59,19 @@ public class Product {
 	
 	private int views;
 	
+	@Transient
+	private MultipartFile file;
+	
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	//default constructor
 	public Product() {
 		this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();

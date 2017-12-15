@@ -68,7 +68,7 @@
 					</div>
 					<div class="carousel-item">
 						<img class="col-lg-12 d-block "
-							src="${contextRoot}/resources/images/witcher.jpg"
+							src="${contextRoot}/resources/images/PRDDEBF3C8072.jpg"
 							alt="Second slide">
 					</div>
 					<div class="carousel-item">

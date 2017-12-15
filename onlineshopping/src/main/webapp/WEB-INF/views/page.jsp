@@ -27,8 +27,7 @@
 </script>
 
 <!-- Material Design -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
@@ -59,11 +58,6 @@
 			<c:if test="${userClickAbout == true}">
 				<%@include file="about.jsp"%>
 			</c:if>
-			
-			<!-- Page Content - Cart -->
-			<c:if test="${userClickedCart == true}">
-				<%@include file="cart.jsp"%>
-			</c:if>
 
 			<!-- Page Content - Product Details -->
 			<c:if test="${userClickSingleProduct == true}">
@@ -73,6 +67,16 @@
 			<!-- Page Content - ContactUs -->
 			<c:if test="${userClickContacts == true}">
 				<%@include file="contact.jsp"%>
+			</c:if>
+			
+			<!-- Page Content - Cart -->
+			<c:if test="${userClickedCart == true}">
+				<%@include file="cart.jsp"%>
+			</c:if>
+			
+			<!-- Page Content - Cart -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
 			</c:if>
 		</div>
 		
@@ -85,9 +89,10 @@
 		
 		<!-- DataTable Plugins -->
 		<script src="${js}/jquery.dataTables.js"></script>
-		
-		<!-- DataTable Plugins -->
 		<script src="${js}/dataTables.bootstrap4.js"></script>
+		
+		<!-- Bootbox Plugins -->
+		<script src="${js}/bootbox.min.js"></script>
 
 		<!-- JavaScript Pages-->
 		<script src="${js}/mainController.js"></script>

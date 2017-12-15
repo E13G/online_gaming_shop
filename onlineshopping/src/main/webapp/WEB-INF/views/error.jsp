@@ -26,7 +26,9 @@
 	window.context = '${contextRoot}';
 </script>
 
-
+<!-- Material Design -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
