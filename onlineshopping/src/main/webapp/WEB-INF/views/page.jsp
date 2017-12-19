@@ -86,6 +86,9 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery-3.2.1.min.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
+				
+		<!-- JavaScript Pages-->
+		<script src="${js}/jquery.validate.js"></script>
 		
 		<!-- DataTable Plugins -->
 		<script src="${js}/jquery.dataTables.js"></script>

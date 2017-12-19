@@ -1,35 +1,55 @@
 package net.ezer.shoppingbackend.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class UserDetail {
+@Table(name = "user_detail")
+public class User implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private int id;
 	
 	@Column(name = "first_name")
+	@NotBlank(message = "Please, Enter your first name")
 	private String firstName;
 	
 	@Column(name = "last_name")
+	@NotBlank(message = "Please, Enter your first name")
 	private String lastName;
 	
-	private String role;
+	private String role = "USER";
 	
-	private Boolean enabled;
+	private Boolean enabled = true;
 	
+	@NotBlank(message = "Please, Enter your password")
 	private String password;
 	
+	@NotBlank(message = "Please, Enter your e-mail")
 	private String email;
 	
 	@Column(name = "contact_number")
+	@NotBlank(message = "Please, Enter your contact number")
 	private String contactNumber;
 
+	@OneToOne(mappedBy="user", cascade = CascadeType.ALL)
+	private Cart cart;
+	
 	@Override
 	public String toString() {
 		return "UserDetail [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role
@@ -100,6 +120,14 @@ public class UserDetail {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	
-	
+
 }
