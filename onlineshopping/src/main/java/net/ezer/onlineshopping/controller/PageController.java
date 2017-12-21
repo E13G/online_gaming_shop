@@ -111,5 +111,14 @@ public class PageController {
 		mv.addObject("userClickedCart",true);
 		return mv;
 	}
+	
+	/* similar*/
+	@RequestMapping(value = {"/register"})
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title","Register");
+		
+		return mv;
+	}
 
 }

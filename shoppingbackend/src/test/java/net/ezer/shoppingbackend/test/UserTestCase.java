@@ -101,16 +101,85 @@ public class UserTestCase {
 //			assertTrue(userDAO.addUser(user));
 //		}
 		
+//		@Test
+//		public void testUpdateCart() {
+//			
+//			user = userDAO.getByEmail("junit@jun.it");
+//			cart = user.getCart();
+//			System.out.println("===================================");
+//			System.out.println(cart.toString());
+//			System.out.println("===================================");
+//			cart.setTotal(20);
+//			cart.setCartLines(2);
+//			assertTrue(userDAO.updateCart(cart));
+//		}
+		
+		
+//		@Test
+//		public void testAddAddress() {
+//			
+//			//Create User
+//			user = new User();
+//			user.setFirstName("j");
+//			user.setLastName("unit");
+//			user.setEmail("junit@jun.it");
+//			user.setContactNumber("123456789");
+//			user.setRole("USER");
+//			user.setPassword("1234");
+//			
+//			//Add User
+//			assertTrue(userDAO.addUser(user));
+//			
+//			//Create Billing Address
+//			address = new Address();
+//			address.setAddressLineOne("Avenida da Liberdade");
+//			address.setAddressLineTwo("Avenida da Liberdade");
+//			address.setBilling(true);
+//			address.setShipping(false);
+//			address.setCity("Lisboa");
+//			address.setPostalCode("1900");
+//			address.setCountry("Portugal");
+//			address.setUser(user);
+//			
+//			//Add Address
+//			assertTrue(userDAO.addAddress(address));
+//			
+//			//Create Shipping Address
+//			address = new Address();
+//			address.setAddressLineOne("Rua Artilharia 1");
+//			address.setAddressLineTwo("Rua Artilharia 1");
+//			address.setBilling(false);
+//			address.setShipping(true);
+//			address.setCity("Lisboa");
+//			address.setPostalCode("1900");
+//			address.setCountry("Portugal");
+//			address.setUser(user);
+//			
+//			//Add Address
+//			assertTrue(userDAO.addAddress(address));
+//		}
+		
+		
+//		@Test
+//		public void testAddAddress2() {
+//			user = userDAO.getByEmail("junit@jun.it");
+//			address = new Address();
+//			address.setAddressLineOne("Avenida de Roma");
+//			address.setAddressLineTwo("Avenida de Roma");
+//			address.setCity("Lisboa");
+//			address.setPostalCode("1900");
+//			address.setCountry("Portugal");
+//			address.setShipping(true);
+//			address.setUser(user);
+//			assertTrue(userDAO.addAddress(address));
+//		}
+		
 		@Test
-		public void testUpdateCart() {
-			
+		public void testGetAddresses() {
 			user = userDAO.getByEmail("junit@jun.it");
-			cart = user.getCart();
-			System.out.println("===================================");
-			System.out.println(cart.toString());
-			System.out.println("===================================");
-			cart.setTotal(20);
-			cart.setCartLines(2);
-			assertTrue(userDAO.updateCart(cart));
+			assertEquals(3,
+			             userDAO.listShippingAddresses(user).size());
+			assertEquals("Lisboa",
+			             userDAO.getBillingAddress(user).getCity());
 		}
 }
