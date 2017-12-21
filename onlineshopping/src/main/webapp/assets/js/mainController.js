@@ -25,6 +25,17 @@ $(function() {
 			break;
 	}
 	
+	/*CSRF*/
+    var token = $('meta[name="_csrf"]').attr('content');
+    var header = $('meta[name="_csrf_header"]').attr('content');
+    if (token.length > 0 && header.length > 0) {
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+
+
+        });
+    }
+	
 	//code for jquery dataTable
 	//create a dataset
 	
@@ -40,6 +51,8 @@ $(function() {
 		console.log("Single Category "+ window.categoryId)
 
 	}
+	
+	
 	
 	var $table = $('#productListTable');
 	
@@ -95,14 +108,17 @@ $(function() {
 						var str = '';
 						str += '<a href="' + window.context+ '/show/product/'+data+'" class="btn btn-sm btn-primary"><i class="material-icons btn-md" width="50px ">visibility</i></a> &#160;'
 						
-						if(row.quantity < 1) {
-							str += '<a href="javascript:void(0)" class="btn btn-sm btn-success disabled "> <i class="material-icons btn-md">remove_shopping_cart</i> </a>'
+						if(userRole == 'ADMIN' ){
+							
+							str += '<a href="' + window.context + '/manage/'+data+'/product" class="btn btn-sm btn-success"><i class="material-icons btn-md">create</i> </a>'
 						}else{
-							str += '<a href="' + window.context+ '/cart" class="btn btn-sm btn-success">   <i class="material-icons btn-md">add_shopping_cart</i> </a>'
+						
+							if(row.quantity < 1) {
+								str += '<a href="javascript:void(0)" class="btn btn-sm btn-success disabled "> <i class="material-icons btn-md">remove_shopping_cart</i> </a>'
+							}else{
+									str += '<a href="' + window.context + '/cart" class="btn btn-sm btn-success">   <i class="material-icons btn-md">add_shopping_cart</i> </a>'
+							}
 						}
-						
-						
-						
 						return str;
 					}
 				}
@@ -268,7 +284,46 @@ var $adminTable = $('#adminProductsTable');
 					
 					description : {
 						
-						required: 'Please add a description for ths category!'
+						required: 'Please add a description for this category!'
+					}
+				},
+				
+				errorElement: 'em',
+				errorPlacement: function(error, element) {
+					
+					error.addClass('help-block')
+					error.insertAfter(element)
+				}
+			});
+	}
+	 
+	//--------------------------------
+	//validation code for login
+	 
+	 var $loginForm = $('#loginForm');
+		
+	 if ($loginForm.length) {
+	        $loginForm.validate({
+	            rules: {
+	                username: {
+	                    required: true,
+	                    email: true
+	                },
+	                password: {
+	                    required: true
+	                }
+	            },
+				
+				messages : {
+					
+					username : {
+						required: 'Please enter the username!',
+						email: 'Please enter a valid e-mail address!'
+					},
+					
+					password : {
+						
+						required: 'Please enter the password!'
 					}
 				},
 				

@@ -30,14 +30,24 @@
               4.0 stars
             </div>
             
+            
+            <security:authorize access="hasAuthority('USER')">
             <c:choose>
+            	
             	<c:when test="${product.quantity <1 }">
             		<a href="javascript:void(0)" class="btn btn-primary disabled">Out of Stock</a>
             	</c:when>
+            	  	
             	<c:otherwise>
             		<a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">shopping_cart</i> Add to Cart</a>
             	</c:otherwise>
             </c:choose>
+            </security:authorize>
+            
+            <security:authorize access="hasAuthority('ADMIN')">
+              	
+            	<a href="${contextRoot}/manage/${product.id}/product" class="btn btn-primary"><i class="material-icons btn-sm"> create </i> Edit</a>
+            </security:authorize>
           </div>
           <!-- /.card -->
 

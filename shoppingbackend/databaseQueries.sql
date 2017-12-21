@@ -14,7 +14,7 @@ CREATE TABLE user_detail (
 	last_name VARCHAR(50),
 	role VARCHAR(50),
 	enabled BOOLEAN,
-	password VARCHAR(50),
+	password VARCHAR(60),
 	email VARCHAR(100),
 	contact_number VARCHAR(15),	
 	CONSTRAINT pk_user_id PRIMARY KEY(id)
@@ -79,13 +79,13 @@ INSERT INTO category(name,description,image_url,is_active) VALUES ('Strategy'  ,
 -- adding three users 
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Joao', 'Pinto', 'ADMIN', true, 'admin', 'jp@gmail.com', '999999999');
+VALUES ('Joao', 'Pinto', 'ADMIN', true, '$2y$10$rsA1X8DfJvNjngtrPoH9pe39nz0OTKateSmJec17uQNpJx4eW0NEu', 'joaopinto@gmail.com', '999999999');
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Ines', 'Pinto', 'SUPPLIER', true, '12345', 'ip@gmail.com', '888888888');
+VALUES ('Ines', 'Pinto', 'USER', true, '$2y$10$WnM0xafzUvv/WlKF2OiJLuEufS24KrkCr9b3kmSpZl/rmFD5wr59G', 'inespinto@gmail.com', '888888888');
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Joana', 'Pinto', 'SUPPLIER', true, '12345', 'joana@gmail.com', '7777777777');
+VALUES ('Joana', 'Pinto', 'USER', true, '$2y$10$DEcV1J6Ao8UojQK0CGbrkudHj/9XQkjYoLHaRGOXJ0oW8Af/VeKry', 'joana@gmail.com', '7777777777');
 
 -- adding a supplier correspondece address
 INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, is_billing, is_shipping) 

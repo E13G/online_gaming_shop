@@ -1,11 +1,18 @@
 package net.ezer.onlineshopping.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.ezer.onlineshopping.exception.ProductNotFoundException;
@@ -25,7 +32,7 @@ public class PageController {
 	@Autowired
 	private ProductDAO productDAO;
 	
-	@RequestMapping(value = {"/","/home"})
+	@RequestMapping(value = {"/","/home"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title","Home");
@@ -34,13 +41,10 @@ public class PageController {
 		mv.addObject("categories",categoryDAO.list());
 		mv.addObject("products",productDAO.listActiveProducts());
 		
-		logger.info("Inside PageController index method - INFO");
-		logger.debug("Inside PageController index method - DEBUG");
-		
 		return mv;
 	}
 	
-	@RequestMapping(value = {"/about"})
+	@RequestMapping(value = {"/about"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView about() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title","About Us");
@@ -48,18 +52,17 @@ public class PageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = {"/contacts"})
+	@RequestMapping(value = {"/contacts"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView contacts() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title","Contact Us");
 		mv.addObject("userClickContacts",true);
 		return mv;
 	}
-	
 	/* Methods to load products and categories*/
 	
 	
-	@RequestMapping(value = {"/show/category/{id}/products"})
+	@RequestMapping(value = {"/show/category/{id}/products"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView categoryProducts(@PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("page");
 		
@@ -78,7 +81,7 @@ public class PageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = {"/show/product/{productId}"})
+	@RequestMapping(value = {"/show/product/{productId}"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView showSingleProduct(@PathVariable("productId") int productId) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
 			
@@ -103,7 +106,7 @@ public class PageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = {"/cart"})
+	@RequestMapping(value = {"/cart"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView showCart() {
 		ModelAndView mv = new ModelAndView("page");
 		
@@ -112,13 +115,58 @@ public class PageController {
 		return mv;
 	}
 	
-	/* similar*/
-	@RequestMapping(value = {"/register"})
+	/* register user*/
+	@RequestMapping(value = {"/register"},produces = "text/plain;charset=UTF-8")
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title","Register");
 		
 		return mv;
+	}
+	
+	@RequestMapping(value = {"/login"},produces = "text/plain;charset=UTF-8")
+	public ModelAndView login(@RequestParam(name = "error", required = false) String error,
+            				  @RequestParam(name ="logout", required = false) String logout) {
+		ModelAndView mv = new ModelAndView("login");
+		
+		if(error!=null) {
+			mv.addObject("message","Invalid Username or Password!");
+		}
+		
+		if(logout!=null) {
+			mv.addObject("logout","Logout was successfull!");
+		}
+		
+		mv.addObject("title","Login");
+
+		return mv;
+	}
+	
+	
+	/* access denied page*/
+	@RequestMapping(value = {"/access-denied"} ,produces = "text/plain;charset=UTF-8")
+	public ModelAndView accessDenied() {
+		
+		ModelAndView mv = new ModelAndView("error");
+		mv.addObject("title","403 - Access Denied");
+		mv.addObject("errorTitle","Contact the Admin to gain access to this page!");
+		mv.addObject("errorDescription","403 - Access Denied");
+		
+		return mv;
+	}
+	
+	/* logout*/
+	@RequestMapping(value = "/perform-logout", produces = "text/plain;charset=UTF-8")
+	public String logount(HttpServletRequest request, HttpServletResponse response) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request,
+			                                          response,
+			                                          auth);
+		}
+		return "redirect:/login?logout";
 	}
 
 }

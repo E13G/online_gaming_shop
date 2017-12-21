@@ -2085,7 +2085,8 @@ select.form-control-lg:not ([size] ):not ([multiple] ), .input-group-lg>select.f
 }
 
 .form-group {
-	margin-bottom: 1rem
+	margin-bottom: 1rem;
+	margin-top: 1rem;
 }
 
 .form-text {

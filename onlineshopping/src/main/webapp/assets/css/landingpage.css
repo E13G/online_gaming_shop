@@ -109,3 +109,7 @@ input:checked + .slider:before {
 table.dataTable tbody td {
   vertical-align: center;
 }
+
+.table-responsive{
+	overflow-x: inherit;
+}

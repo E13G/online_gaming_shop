@@ -3,6 +3,7 @@ package net.ezer.onlineshopping.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import net.ezer.onlineshopping.model.RegisterModel;
@@ -16,6 +17,9 @@ public class RegisterHandler {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private BCryptPasswordEncoder passEncoder;
 
 	public RegisterModel init() {
 		
@@ -48,7 +52,7 @@ public class RegisterHandler {
 		}
 		
 		//check if the email already exists
-		if(!userDAO.getByEmail(user.getEmail()).equals(null)) {
+		if(userDAO.getByEmail(user.getEmail())!=null) {
 			
 			error.addMessage(new MessageBuilder()
 					.error()
@@ -73,6 +77,9 @@ public class RegisterHandler {
 			cart.setUser(user);
 			user.setCart(cart);
 		}
+		
+		//encode the password
+		user.setPassword(passEncoder.encode(user.getPassword()));
 		
 		userDAO.addUser(user);
 		

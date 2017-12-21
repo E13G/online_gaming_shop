@@ -66,7 +66,7 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-4" for="confirmPassword"> Confirm Password: </label>
                                 <div class="col-md-8">
-                                    <form:input type="password" path="password" placeholder="Re-Enter Password"
+                                    <form:input type="password" path="confirmPassword" placeholder="Re-Enter Password"
                                                 class="form-control"/>
                                     <form:errors path="confirmPassword" cssClass="help-block" element="em"/>
                                 </div>
