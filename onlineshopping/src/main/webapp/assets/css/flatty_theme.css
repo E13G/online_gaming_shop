@@ -685,6 +685,11 @@ pre code {
 	padding-left: 15px
 }
 
+.col-lg-12.img-fluid{
+	padding-right: 0px;
+	padding-left: 0px
+}
+
 .col {
 	-ms-flex-preferred-size: 0;
 	flex-basis: 0;

@@ -64,6 +64,19 @@ CREATE TABLE cart (
 	CONSTRAINT pk_cart_id PRIMARY KEY (id)
 );
 
+CREATE TABLE cart_line (
+	id IDENTITY,
+	cart_id int,
+	total DECIMAL(10,2),
+	product_id int,
+	product_count int,
+	buying_price DECIMAL(10,2),
+	is_available boolean,
+	CONSTRAINT fk_cartline_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id),
+	CONSTRAINT fk_cartline_product_id FOREIGN KEY (product_id) REFERENCES product (id),
+	CONSTRAINT pk_cartline_id PRIMARY KEY (id)
+);
+
 -- adding three categories
 INSERT INTO category(name,description,image_url,is_active) VALUES ('Action'    , 'Description of an Action Game!'    ,'cat_3.png',true);
 INSERT INTO category(name,description,image_url,is_active) VALUES ('Adventure' , 'Description of an Adventure Game!' ,'cat_3.png',true);
@@ -79,13 +92,7 @@ INSERT INTO category(name,description,image_url,is_active) VALUES ('Strategy'  ,
 -- adding three users 
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Joao', 'Pinto', 'ADMIN', true, '$2y$10$rsA1X8DfJvNjngtrPoH9pe39nz0OTKateSmJec17uQNpJx4eW0NEu', 'joaopinto@gmail.com', '999999999');
-INSERT INTO user_detail 
-(first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Ines', 'Pinto', 'USER', true, '$2y$10$WnM0xafzUvv/WlKF2OiJLuEufS24KrkCr9b3kmSpZl/rmFD5wr59G', 'inespinto@gmail.com', '888888888');
-INSERT INTO user_detail 
-(first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Joana', 'Pinto', 'USER', true, '$2y$10$DEcV1J6Ao8UojQK0CGbrkudHj/9XQkjYoLHaRGOXJ0oW8Af/VeKry', 'joana@gmail.com', '7777777777');
+VALUES ('Joao', 'Pinto', 'ADMIN', true, '$2a$04$mJyBqkPfqXFVx/1P1ebGY.I1a/J.LA8cX0bge.p4BMLdetpm2.ZVq', 'joaopinto@gmail.com', '999999999');
 
 -- adding a supplier correspondece address
 INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, is_billing, is_shipping) 

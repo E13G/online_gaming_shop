@@ -27,7 +27,7 @@
 				</security:authorize>
 				
 				<security:authorize access="isAuthenticated()">		
-				<div class="dropdown nav-item">
+				<div  id="navName" class="dropdown nav-item">
 					<a class="nav-link" href="javascript:void(0)" 
 					class="btn btn-default dropdown-toggle"
 					id="dropdownMenu1"
@@ -39,7 +39,7 @@
 					<div class="dropdown-menu">
 					
 							<security:authorize access="hasAuthority('USER')">
-								<a class="dropdown-item" href="${contextRoot}/cart"> <i
+								<a class="dropdown-item" href="${contextRoot}/cart/show"> <i
 										class="material-icons btn-sm">shopping_cart</i>  ${ userModel.cart.cartLines } - ${ userModel.cart.total }
 										&#8364;
 								</a>

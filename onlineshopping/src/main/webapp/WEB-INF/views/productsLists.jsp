@@ -57,7 +57,7 @@
 							src="${contextRoot}/resources/images/zelda.jpg" alt="First slide">
 					</div>
 					<div class="carousel-item">
-						<img class="col-lg-12 d-block "
+						<img class="col-lg-12 d-block img-fluid"
 							src="${contextRoot}/resources/images/PRDDEBF3C8072.jpg"
 							alt="Second slide">
 					</div>

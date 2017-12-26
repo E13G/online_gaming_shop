@@ -39,7 +39,7 @@
             	</c:when>
             	  	
             	<c:otherwise>
-            		<a href="${contextRoot}/cart" class="btn btn-primary"><i class="material-icons btn-sm">shopping_cart</i> Add to Cart</a>
+            		<a href="${contextRoot}/cart/${product.id}/add" class="btn btn-primary"><i class="material-icons btn-sm">shopping_cart</i> Add to Cart</a>
             	</c:otherwise>
             </c:choose>
             </security:authorize>

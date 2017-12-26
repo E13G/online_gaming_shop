@@ -11,12 +11,14 @@ $(function() {
 			$("#navContacts").addClass('active');
 			
 			break;
-		case "Cart":
-			$("#navCart").addClass('active');
+		case "User Cart":
+			$("#navName").addClass('active');
 			break;
 		case "Manage Products":
 			$("#navManegement").addClass('active');
 			break;
+			
+			
 		default:
 			if(menu == "Home") break;
 			$("#navHome").addClass('active');
@@ -116,7 +118,7 @@ $(function() {
 							if(row.quantity < 1) {
 								str += '<a href="javascript:void(0)" class="btn btn-sm btn-success disabled "> <i class="material-icons btn-md">remove_shopping_cart</i> </a>'
 							}else{
-									str += '<a href="' + window.context + '/cart" class="btn btn-sm btn-success">   <i class="material-icons btn-md">add_shopping_cart</i> </a>'
+									str += '<a href="' + window.context + '/cart/'+data+'/add" class="btn btn-sm btn-success">   <i class="material-icons btn-md">add_shopping_cart</i> </a>'
 							}
 						}
 						return str;

@@ -73,7 +73,7 @@
 			</c:if>
 			
 			<!-- Page Content - Cart -->
-			<c:if test="${userClickedCart == true}">
+			<c:if test="${userClickShowCart == true}">
 				<%@include file="cart.jsp"%>
 			</c:if>
 			
